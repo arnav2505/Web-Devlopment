@@ -1,0 +1,47 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    socket.on('connect', () => {
+    
+        //get local storage item
+        if (localStorage.getItem('username',)) {
+            const username = localStorage.getItem('username') 
+            alert(name);
+            display="True"
+        } else{ 
+            display="False"
+        };
+                
+        if(display==="True"){
+            document.querySelector('p').innerHTML = "Welcome Back "+ localStorage.getItem('username') +" To Arnav's Social Networking Club";
+        } else{ 
+            document.querySelector('p').innerHTML = "Welcome To Arnav's Social Networking Club";
+        }
+        document.querySelectorAll('button').forEach(button => {
+            button.onclick = () => {
+                const selection = button.dataset.room;
+                if(display==="True"){
+                    socket.emit('socket_room')
+                    server.on('redirect', function(destination) {
+                        window.location.href = destination;
+                    });
+                } else{ 
+                    socket.emit('socket_name')
+                    server.on('redirect', function(destination) {
+                        alert('g14')
+                        window.location.href = destination;
+                    });
+                    socket.on('vote totals', data => {
+                        window.location.href = destination;
+                    });
+
+                };
+            };
+        });
+    });
+    
+});
+
+
+
+
